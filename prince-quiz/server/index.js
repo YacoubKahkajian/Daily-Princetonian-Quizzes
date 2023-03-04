@@ -21,7 +21,7 @@ let final = [];
 function build() {
     for (let i = 0; i < rows.length; i++) {
         let obj = {
-            question: rows[i].question,
+            q: rows[i].q,
             qimg: rows[i].qimg,
             c1: rows[i].c1,
             c1img: rows[i].c1img,
