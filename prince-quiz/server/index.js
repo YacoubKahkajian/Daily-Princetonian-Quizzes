@@ -21,17 +21,10 @@ let final = [];
 function build() {
     for (let i = 0; i < rows.length; i++) {
         let obj = {
-            q: rows[i].q,
-            qimg: rows[i].qimg,
-            c1: rows[i].c1,
-            c1img: rows[i].c1img,
-            c2: rows[i].c2,
-            c2img: rows[i].c2img,
-            c3: rows[i].c3,
-            c3img: rows[i].c3img,
-            c4: rows[i].c4,
-            c4img: rows[i].c4img,
-            correct: rows[i].correct
+            name: rows[i].name,
+            date: rows[i].date,
+            firstRow: rows[i].firstRow,
+            lastRow: rows[i].lastRow
         };
         final.push(obj);
     }
