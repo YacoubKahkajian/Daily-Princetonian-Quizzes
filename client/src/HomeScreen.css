@@ -1,0 +1,25 @@
+.Home{
+  margin: 0;
+  padding: 2vw;
+}
+
+.page-title{
+  color: red;
+}
+
+.big-block img{
+  width: 150px;
+}
+
+.big-block{
+  color: green;
+}
+
+.right-sidebar-block img{
+  width: 50px;
+}
+
+.below-block img{
+  width: 50px;
+}
+

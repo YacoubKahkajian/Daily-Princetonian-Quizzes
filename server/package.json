@@ -8,5 +8,8 @@
   },
   "scripts": {
     "start": "node index.js"
+  },
+  "devDependencies": {
+    "react-router-dom": "^6.10.0"
   }
 }
