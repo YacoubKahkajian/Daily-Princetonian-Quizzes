@@ -5,7 +5,9 @@ const doc = new GoogleSpreadsheet(process.env.SHEET_ID);
 const app = express();
 const PORT = process.env.PORT || 3001;
 let rows;
-let final = [];
+let questions;
+let quizList = [];
+let questionList = [];
 
 (async function() {
     await doc.useServiceAccountAuth({
@@ -13,26 +15,51 @@ let final = [];
         private_key: process.env.GOOGLE_PRIVATE_KEY,
     });
     await doc.loadInfo(); // loads sheets
-    const sheet = doc.sheetsByIndex[0];
-    rows = await sheet.getRows();
-    build();
+    const sheet1 = doc.sheetsByIndex[0]
+    rows = await sheet1.getRows();
+    console.log(rows.length);
+    const sheet2 = doc.sheetsByIndex[1]
+    questions = await sheet2.getRows();
+    getQuizzes();
 }());
 
-function build() {
+function getQuizzes() {
     for (let i = 0; i < rows.length; i++) {
         let obj = {
             name: rows[i].name,
             date: rows[i].date,
             firstRow: rows[i].firstRow,
-            lastRow: rows[i].lastRow
+            lastRow: rows[i].lastRow,
+            route: rows[i].route,
+            imageURL: rows[i].imageURL
         };
-        final.push(obj);
+        quizList.push(obj);
     }
 }
 
-app.get("/api", (req, res) => {
-    res.json(final);
+function getQuestions(first, last) {
+    for (let i = first; i < last; i++) {
+        let obj = {
+            q: questions[i].q,
+            option1: questions[i].option1,
+            option2: questions[i].option2,
+            option3: questions[i].option3,
+            option4: questions[i].option4,
+            questionImg: questions[i].questionImg
+        }
+        questionList.push(obj);
+    }
+}
+
+app.get("/api/quiz-data", (req, res) => {
+    res.json(quizList);
 });
+
+app.get("/api/question-data", (req, res) => {
+    getQuestions();
+    res.json(questionList);
+});
+
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 });
