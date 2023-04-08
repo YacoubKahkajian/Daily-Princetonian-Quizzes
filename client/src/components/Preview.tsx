@@ -24,4 +24,4 @@ function Preview(comp: props) {
     )
 }
 
-export default Preview
+export default Preview;
