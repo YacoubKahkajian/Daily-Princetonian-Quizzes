@@ -6,14 +6,20 @@ import {useParams} from "react-router-dom";
 
 function Quiz() {
     let params = useParams();
-    console.log(params.shortName);
-    console.log(params.first);
-    console.log(params.last);
+    const range = {
+        first: params.first,
+        last: params.last
+    }
 
     const [data, setData] = useState(Object);
 
     useEffect(() => {
-        fetch(`/api/question-data?select=${params.first}-${params.last}`)
+        fetch(`/api/question-data`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(range)})
             .then((res) => res.json())
             .then((data) => setData(data))
     }, []);

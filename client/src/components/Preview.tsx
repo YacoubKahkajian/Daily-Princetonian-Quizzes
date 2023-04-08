@@ -1,4 +1,3 @@
-import './Preview.css'
 import {useNavigate} from "react-router-dom";
 
 interface props {

@@ -55,11 +55,14 @@ app.get("/api/quiz-data", (req, res) => {
     res.json(quizList);
 });
 
-app.get("/api/question-data", (req, res) => {
-    getQuestions();
-    res.json(questionList);
-});
-
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
+});
+
+app.use(express.json());
+
+app.post("/api/question-data", (req, res) => {
+    console.dir(req.body)
+    // getQuestions();
+    // res.json(questionList);
 });
