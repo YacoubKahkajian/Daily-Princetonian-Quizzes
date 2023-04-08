@@ -1,6 +1,5 @@
 .Home{
   margin: 0;
-  padding: 2vw;
 }
 
 .page-title{
@@ -11,10 +10,12 @@
 
 .big-block img{
   width: 150px;
+  
 }
 
 .big-block{
-  color: green;
+  color: black;
+  width: 150px;
 }
 
 .right-sidebar-block img{
@@ -25,3 +26,7 @@
   width: 50px;
 }
 
+
+li {
+  list-style: none;
+}
