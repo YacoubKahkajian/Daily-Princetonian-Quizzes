@@ -12,3 +12,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.Question {
+  margin-left: 72px;
+  margin-bottom: 0px;
+  position: relative;
+  display: block;
+}
+

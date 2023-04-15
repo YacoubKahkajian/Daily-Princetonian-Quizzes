@@ -1,7 +1,37 @@
 .question-img{
     width: 350px;
+    padding-top: 15px;
+    padding-bottom: 5px;
 }
 
-.choices{
-    display: block;
+.question {
+    position: relative;
+    font-size: larger;
+    font-weight: 500;
+    display: flex;
+    margin-top: 10px;
+}
+
+fieldset {
+    border: 0;
+    position: relative;
+    display: inline-grid;
+    line-height: 1.5;
+}
+
+.choices {
+    display: inline-block;
+    position: relative;
+    top: -200px;
+    padding-left: 10px;
+    font-size: larger;
+    font-weight: 500;
+}
+
+input[type="radio"] {
+    margin-bottom: 32px;
+}
+
+.Question {
+    padding-bottom: 0%;
 }

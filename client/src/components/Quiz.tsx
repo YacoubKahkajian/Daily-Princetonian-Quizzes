@@ -21,25 +21,25 @@ function Quiz() {
     return (
         <div className="Quiz">
             <Header/>
-            <span className='quiz-title'>Title</span>
-            <span className='sub-title'>Subtitle</span>
+            <span className='quiz-title'>QUIZ: Title</span>
+            <span className='sub-title'>By: user123</span>
             <Question
-                question="Question 1 question"
+                question="Question 1 question?"
                 option1="This is option A"
                 option2="This is option B"
                 option3="This is option C"
-                option4="This is option d"
+                option4="This is option D"
                 questionImg="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Cannon_Green_and_Nassau_Hall%2C_Princeton_University.jpg/1200px-Cannon_Green_and_Nassau_Hall%2C_Princeton_University.jpg"
             />
             <Question
-                question="Question 2 question"
+                question="Question 2 question?"
                 option1="This is option A"
                 option2="This is option B"
                 option3="This is option C"
-                option4="This is option d"
+                option4="This is option D"
                 questionImg="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Cannon_Green_and_Nassau_Hall%2C_Princeton_University.jpg/1200px-Cannon_Green_and_Nassau_Hall%2C_Princeton_University.jpg"
             />
-            <button className="finish-quiz">Finish Quiz</button>
+            <button className="finish-quiz">FINISH QUIZ</button>
         </div>
     );
 }
