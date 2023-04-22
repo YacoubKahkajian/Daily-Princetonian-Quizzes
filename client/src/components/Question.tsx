@@ -11,15 +11,17 @@ function Question(props: {question: string, option1: string, option2: string, op
       <img className="question-img" src={props.questionImg}></img>
 
       <div className="choices">
-        <fieldset>
-          <label><input type="radio" id="html" value={props.option1}/>{props.option1}</label>
+          <input type="radio" id="choice1" name="button" value={props.option1}/>
+          <label htmlFor ="choice1">{props.option1}</label><br></br>
+
+          <input type="radio" id="choice2" name="button" value={props.option2}/>
+          <label htmlFor ="choice2">{props.option2}</label><br></br>
           
-          <label><input type="radio" id="css" value={props.option2}/>{props.option2}</label>
+          <input type="radio" id="choice3" name="button" value={props.option3}/>
+          <label htmlFor ="choice3">{props.option3}</label><br></br>
           
-          <label ><input type="radio" id="javascript" value={props.option3}/>{props.option3}</label>
-          
-          <label><input type="radio" id="react" value={props.option4}/>{props.option4}</label>
-        </fieldset>
+          <input type="radio" id="choice4" name="button" value={props.option4}/>
+          <label htmlFor ="choice4">{props.option4}</label><br></br>
       </div>
     </div>
   );

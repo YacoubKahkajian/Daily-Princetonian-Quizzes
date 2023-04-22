@@ -1,37 +1,30 @@
-.question-img{
-    width: 350px;
-    padding-top: 15px;
-    padding-bottom: 5px;
-}
-
 .question {
     position: relative;
     font-size: larger;
     font-weight: 500;
     display: flex;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 
-fieldset {
-    border: 0;
-    position: relative;
-    display: inline-grid;
-    line-height: 1.5;
+.question-img{
+    width: 500px;
+    padding-top: 5px;
+    display: inline-block;
+    margin-bottom: 0px;
 }
-
+ 
 .choices {
     display: inline-block;
     position: relative;
-    top: -200px;
-    padding-left: 10px;
+    top: 50px;
+    padding-left: 30px;
     font-size: larger;
     font-weight: 500;
-}
+    line-height: 3;
+    vertical-align: top;
+} 
 
 input[type="radio"] {
-    margin-bottom: 32px;
+    line-height: 1;
 }
 
-.Question {
-    padding-bottom: 0%;
-}
