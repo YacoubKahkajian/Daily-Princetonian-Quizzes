@@ -26,5 +26,6 @@
 
 input[type="radio"] {
     line-height: 1;
+    accent-color: orange;
 }
 
