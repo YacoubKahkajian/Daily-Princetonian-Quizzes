@@ -19,7 +19,8 @@ function Preview(comp: props) {
     return (
         <div className="big-block" onClick={handleClick}>
             <img src={comp.image} alt=""></img>
-            <span>{comp.name}</span>
+            <span className="name">{comp.name}</span><br></br>
+            <span className="date">Created: {comp.date}</span>
         </div>
     )
 }

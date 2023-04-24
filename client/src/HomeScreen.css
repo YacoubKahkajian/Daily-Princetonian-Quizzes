@@ -5,12 +5,11 @@
 .page-title{
   color: black;
   font-size: xx-large;
-  padding-left: 6vw;
+  padding-left: 90px;
 }
 
 .big-block img{
-  width: 150px;
-  
+  width: 200px;
 }
 
 .big-block{
@@ -29,4 +28,9 @@
 
 li {
   list-style: none;
+}
+
+.featured {
+  width: 100px;
+  color:aliceblue;
 }

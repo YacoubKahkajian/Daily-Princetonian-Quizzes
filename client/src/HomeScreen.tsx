@@ -30,7 +30,8 @@ function HomeScreen() {
     <div className="Home">
       <Header></Header>
       <p className="page-title">Quizzes</p>
-        {quizzes}
+        <span className="featured">{quizzes[0]} </span>
+        <span className="grid">{quizzes.slice(1)}</span>
     </div>
   );
 }
