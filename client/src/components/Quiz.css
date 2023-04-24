@@ -10,9 +10,8 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 4px 2px;
     cursor: pointer;
-    margin-left: 60px;
+    margin-left: 50px;
 }
 
 .finish-quiz:before {

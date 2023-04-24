@@ -13,6 +13,7 @@ function HomeScreen() {
   }, []);
 
   let quizzes = [];
+  
   for (let i = 0; i < data.length; i++)
     quizzes.push(
         <li key = {data[i].route}>
@@ -25,6 +26,8 @@ function HomeScreen() {
           route={data[i].route}/>
         </li>
 );
+  let quiz1 = [];
+
 
   return (
     <div className="Home">
