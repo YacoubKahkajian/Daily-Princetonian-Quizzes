@@ -2,24 +2,26 @@
 // function Question(props: {name: String, id?: number}) {
 import './Question.css'
 
-function Question(props: {question: string, option1: string, option2: string, option3: string, option4: String, questionImg: string}) {
-  return (
-    <div className="Question">
-      {/* the different inputs are stored in the props argument object, so to access them do "props.{add in your attribute you want}" */}
-      {/* <p>{props.name} {props.id}</p> */}
-      <img className="question-img" src={props.questionImg}></img>
-      <span className="question">{props.question}</span>
+function Question(props: {question: string, option1: string, option2: string, option3: string, option4: string, questionImg: string}) {
+    return (
+        <div className="Question">
+            {/* the different inputs are stored in the props argument object, so to access them do "props.{add in your attribute you want}" */}
+            {/* <p>{props.name} {props.id}</p> */}
+            <img className="question-img" src={props.questionImg} alt=" "></img>
+            <span className="question">{props.question}</span>
 
-      <div className="choices">
-        <input type="radio" id="html" value={props.option1}/>
-        <label>{props.option1}</label>
-        <input type="radio" id="css" value={props.option2}/>
-        <label>{props.option2}</label>
-        <input type="radio" id="javascript" value={props.option2}/>
-        <label >{props.option2}</label>
-      </div>
-    </div>
-  );
+            <div className="choices">
+                <input type="radio" id="html" value={props.option1}/>
+                <label>{props.option1}</label>
+                <input type="radio" id="css" value={props.option2}/>
+                <label>{props.option2}</label>
+                <input type="radio" id="javascript" value={props.option3}/>
+                <label>{props.option3}</label>
+                <input type="radio" id="javascript" value={props.option4}/>
+                <label>{props.option4}</label>
+            </div>
+        </div>
+    );
 }
 
 export default Question;

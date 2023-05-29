@@ -1,6 +1,6 @@
 import './Quiz.css';
-import Question from './Question'
-import Header from './Header'
+import Question from './Question';
+import Header from './Header';
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 
@@ -24,27 +24,26 @@ function Quiz() {
             .then((data) => setData(data))
     }, []);
 
+    let questions = [];
+    for (let i= 0; i < data.length; i++) {
+        questions.push(
+            <Question
+                question={data[i].q}
+                option1={data[i].option1}
+                option2={data[i].option2}
+                option3={data[i].option3}
+                option4={data[i].option4}
+                questionImg={data[i].questionImg}
+            />
+        )
+    }
+
     return (
         <div className="Quiz">
             <Header/>
             <span className='quiz-title'>Title</span>
             <span className='sub-title'>Subtitle</span>
-            <Question
-                question="Question 1 question"
-                option1="This is option A"
-                option2="This is option B"
-                option3="This is option C"
-                option4="This is option d"
-                questionImg="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Cannon_Green_and_Nassau_Hall%2C_Princeton_University.jpg/1200px-Cannon_Green_and_Nassau_Hall%2C_Princeton_University.jpg"
-            />
-            <Question
-                question="Question 2 question"
-                option1="This is option A"
-                option2="This is option B"
-                option3="This is option C"
-                option4="This is option d"
-                questionImg="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Cannon_Green_and_Nassau_Hall%2C_Princeton_University.jpg/1200px-Cannon_Green_and_Nassau_Hall%2C_Princeton_University.jpg"
-            />
+            {questions}
             <button className="finish-quiz">Finish Quiz</button>
         </div>
     );

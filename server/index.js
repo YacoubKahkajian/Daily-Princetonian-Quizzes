@@ -15,10 +15,9 @@ let questionList = [];
         private_key: process.env.GOOGLE_PRIVATE_KEY,
     });
     await doc.loadInfo(); // loads sheets
-    const sheet1 = doc.sheetsByIndex[0]
+    const sheet1 = doc.sheetsByIndex[0];
+    const sheet2 = doc.sheetsByIndex[1];
     rows = await sheet1.getRows();
-    console.log(rows.length);
-    const sheet2 = doc.sheetsByIndex[1]
     questions = await sheet2.getRows();
     getQuizzes();
 }());
@@ -38,7 +37,7 @@ function getQuizzes() {
 }
 
 function getQuestions(first, last) {
-    for (let i = first; i < last; i++) {
+    for (let i = first; i <= last; i++) {
         let obj = {
             q: questions[i].q,
             option1: questions[i].option1,
@@ -62,7 +61,7 @@ app.listen(PORT, () => {
 app.use(express.json());
 
 app.post("/api/question-data", (req, res) => {
-    console.dir(req.body)
-    // getQuestions();
-    // res.json(questionList);
+    getQuestions(req.body.first - 1, req.body.last - 1);
+    res.json(questionList);
+    questionList = [];
 });
