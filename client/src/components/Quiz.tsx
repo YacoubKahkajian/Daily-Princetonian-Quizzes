@@ -29,12 +29,10 @@ function Quiz() {
         questions.push(
             <Question
                 question={data[i].q}
-                option1={data[i].option1}
-                option2={data[i].option2}
-                option3={data[i].option3}
-                option4={data[i].option4}
+                options={[data[i].option1, data[i].option2, data[i].option3, data[i].option4]}
                 questionImg={data[i].questionImg}
-            />
+                correct={data[i].correct}
+                />
         )
     }
 
@@ -44,7 +42,6 @@ function Quiz() {
             <span className='quiz-title'>Title</span>
             <span className='sub-title'>Subtitle</span>
             {questions}
-            <button className="finish-quiz">Finish Quiz</button>
         </div>
     );
 }

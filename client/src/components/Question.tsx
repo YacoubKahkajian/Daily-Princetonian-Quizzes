@@ -2,7 +2,17 @@
 // function Question(props: {name: String, id?: number}) {
 import './Question.css'
 
-function Question(props: {question: string, option1: string, option2: string, option3: string, option4: string, questionImg: string}) {
+function Question(props: {question: string, options: string[], questionImg?: string, correct: number}) {
+    let choices = [];
+    let i = 0;
+    for (const option of props.options) {
+        i++;
+        if (option != null)
+            choices.push(
+                <><input type="radio" id="html" value={props.correct == i ? 'green' : 'red'}/><label>{option}</label></>
+            );
+    }
+
     return (
         <div className="Question">
             {/* the different inputs are stored in the props argument object, so to access them do "props.{add in your attribute you want}" */}
@@ -11,15 +21,9 @@ function Question(props: {question: string, option1: string, option2: string, op
             <span className="question">{props.question}</span>
 
             <div className="choices">
-                <input type="radio" id="html" value={props.option1}/>
-                <label>{props.option1}</label>
-                <input type="radio" id="css" value={props.option2}/>
-                <label>{props.option2}</label>
-                <input type="radio" id="javascript" value={props.option3}/>
-                <label>{props.option3}</label>
-                <input type="radio" id="javascript" value={props.option4}/>
-                <label>{props.option4}</label>
+                {choices}
             </div>
+            <button className="check-question">Check</button>
         </div>
     );
 }
