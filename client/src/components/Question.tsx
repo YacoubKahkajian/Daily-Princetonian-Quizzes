@@ -2,29 +2,30 @@
 // function Question(props: {name: String, id?: number}) {
 import './Question.css'
 
-function Question(props: {question: string, option1: string, option2: string, option3: string, option4: string, questionImg: string}) {
-  return (
-    <div className="Question">
-      {/* the different inputs are stored in the props argument object, so to access them do "props.{add in your attribute you want}" */}
-      {/* <p>{props.name} {props.id}</p> */}
-      <span className="question">{props.question}</span>
-      <img className="question-img" src={props.questionImg}></img>
+function Question(props: {question: string, options: string[], questionImg?: string, correct: number}) {
+    let choices = [];
+    let i = 0;
+    for (const option of props.options) {
+        i++;
+        if (option != null)
+            choices.push(
+                <><input type="radio" id="html" value={props.correct == i ? 'green' : 'red'}/><label>{option}</label></>
+            );
+    }
 
-      <div className="choices">
-          <input type="radio" id="choice1" name="button" value={props.option1}/>
-          <label htmlFor ="choice1">{props.option1}</label><br></br>
+    return (
+        <div className="Question">
+            {/* the different inputs are stored in the props argument object, so to access them do "props.{add in your attribute you want}" */}
+            {/* <p>{props.name} {props.id}</p> */}
+            <img className="question-img" src={props.questionImg} alt=" "></img>
+            <span className="question">{props.question}</span>
 
-          <input type="radio" id="choice2" name="button" value={props.option2}/>
-          <label htmlFor ="choice2">{props.option2}</label><br></br>
-          
-          <input type="radio" id="choice3" name="button" value={props.option3}/>
-          <label htmlFor ="choice3">{props.option3}</label><br></br>
-          
-          <input type="radio" id="choice4" name="button" value={props.option4}/>
-          <label htmlFor ="choice4">{props.option4}</label><br></br>
-      </div>
-    </div>
-  );
+            <div className="choices">
+                {choices}
+            </div>
+            <button className="check-question">Check</button>
+        </div>
+    );
 }
 
 export default Question;
