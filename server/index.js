@@ -65,3 +65,21 @@ app.post("/api/question-data", (req, res) => {
     res.json(questionList);
     questionList = [];
 });
+
+app.post("/api/submits", (req, res) => {
+    const formAnswers = Object.entries(req.body.formData);
+    let answerArray = [];
+    let correct = 0;
+    for (let i = 0; i < formAnswers.length; i++) {
+        console.log(formAnswers[i][1]);
+        answerArray[i] = formAnswers[i][1];
+    }
+
+    let j = 0;
+    for (let i = req.body.range.first - 1; i <= req.body.range.last - 1; i++) {
+        if (questions[i].correct === answerArray[j]) correct++;
+        j++;
+    }
+
+    res.json(correct);
+});

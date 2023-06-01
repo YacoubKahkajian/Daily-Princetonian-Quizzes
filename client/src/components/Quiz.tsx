@@ -4,7 +4,7 @@ import Header from './Header';
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 
-function Quiz() {
+function Quiz(this: any) {
     let params = useParams();
     const range = {
         first: params.first,
@@ -12,13 +12,12 @@ function Quiz() {
     }
 
     const [data, setData] = useState(Object);
+    const [correct, setCorrect] = useState(Number);
 
     useEffect(() => {
         fetch(`/api/question-data`, {
             method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
+            headers: {"Content-Type": "application/json"},
             body: JSON.stringify(range)})
             .then((res) => res.json())
             .then((data) => setData(data))
@@ -31,9 +30,20 @@ function Quiz() {
                 question={data[i].q}
                 options={[data[i].option1, data[i].option2, data[i].option3, data[i].option4]}
                 questionImg={data[i].questionImg}
-                correct={data[i].correct}
                 />
         )
+    }
+
+    function handleSubmit(event: { preventDefault: () => void; target: any; }) {
+        event.preventDefault();
+        const form = event.target;
+        const formData = Object.fromEntries(new FormData(form));
+        fetch('/api/submits', {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({formData, range})})
+            .then((res) => res.json())
+            .then((correct) => setCorrect(correct))
     }
 
     return (
@@ -41,7 +51,11 @@ function Quiz() {
             <Header/>
             <span className='quiz-title'>Title</span>
             <span className='sub-title'>Subtitle</span>
-            {questions}
+            <form onSubmit={handleSubmit}>
+                {questions}
+                <input type="submit"/>
+            </form>
+            <p>{correct}</p>
         </div>
     );
 }
