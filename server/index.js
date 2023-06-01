@@ -9,6 +9,8 @@ let questions;
 let quizList = [];
 let questionList = [];
 
+// Load the spreadsheet data needed using the GoogleSpreadsheet
+// library.
 (async function() {
     await doc.useServiceAccountAuth({
         client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
@@ -36,6 +38,7 @@ function getQuizzes() {
     }
 }
 
+// TO-DO: Find a way to use an array for the options?
 function getQuestions(first, last) {
     for (let i = first; i <= last; i++) {
         let obj = {
@@ -60,26 +63,33 @@ app.listen(PORT, () => {
 
 app.use(express.json());
 
+// Uses the body of the request to get a specific range of questions
+// to add to the resulting list. Clears the list afterward to avoid
+// duplication upon refresh.
 app.post("/api/question-data", (req, res) => {
     getQuestions(req.body.first - 1, req.body.last - 1);
     res.json(questionList);
     questionList = [];
 });
 
+// Processes quiz submissions.
 app.post("/api/submits", (req, res) => {
+    // Convert the JSON object into a 2d matrix.
     const formAnswers = Object.entries(req.body.formData);
-    let answerArray = [];
-    let correct = 0;
-    for (let i = 0; i < formAnswers.length; i++) {
-        console.log(formAnswers[i][1]);
-        answerArray[i] = formAnswers[i][1];
-    }
 
+    // Put the placement of the option chosen in an array.
+    let answerArray = [];
+    for (let i = 0; i < formAnswers.length; i++)
+        answerArray[i] = formAnswers[i][1];
+
+    // Since the order of the questions in the DB and the order of
+    // the answerArray should be parallel, we can compare the two
+    // in the same for loop.
+    let correct = 0;
     let j = 0;
     for (let i = req.body.range.first - 1; i <= req.body.range.last - 1; i++) {
         if (questions[i].correct === answerArray[j]) correct++;
         j++;
     }
-
     res.json(correct);
 });

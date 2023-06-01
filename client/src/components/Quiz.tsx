@@ -5,15 +5,23 @@ import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 
 function Quiz(this: any) {
+    // Takes the first and last rows from the spreadsheet that should
+    // be considered from the URL of the quiz.
+    // TO-DO: Would be nice if we could find a way to link this to
+    // the shortname so people couldn't just type any numbers up there.
     let params = useParams();
     const range = {
         first: params.first,
         last: params.last
     }
 
+    // Updates the questions upon fetching them
     const [data, setData] = useState(Object);
+    // Updates the number of questions correct upon the quiz's submission.
     const [correct, setCorrect] = useState(Number);
 
+    // Fetch the quiz questions from the Google Sheet, using the
+    // parameters from the URL.
     useEffect(() => {
         fetch(`/api/question-data`, {
             method: 'POST',
@@ -23,6 +31,8 @@ function Quiz(this: any) {
             .then((data) => setData(data))
     }, []);
 
+    // Constructs the question components using JSON data and
+    // puts components in a list.
     let questions = [];
     for (let i= 0; i < data.length; i++) {
         questions.push(
@@ -34,6 +44,10 @@ function Quiz(this: any) {
         )
     }
 
+    // Runs upon quiz submission. Creates a FormData object that is
+    // then converted to a JSON object which can be parsed by the server.
+    // TO-DO: Also find a way to send back the questions to mark as
+    // in/correct.
     function handleSubmit(event: { preventDefault: () => void; target: any; }) {
         event.preventDefault();
         const form = event.target;
