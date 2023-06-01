@@ -19,9 +19,13 @@ function Quiz(this: any) {
     const [data, setData] = useState(Object);
     // Updates the number of questions correct upon the quiz's submission.
     const [correct, setCorrect] = useState(Number);
+    // Updates the individual questions to mark as correct, where true represents a
+    // question that was correctly answered.
+    let initialMark : boolean[] = new Array(data.length).fill(false);
+    const [mark, setMark] = useState(initialMark);
 
     // Fetch the quiz questions from the Google Sheet, using the
-    // parameters from the URL.
+    // parameters from the URL, and updates the page's state.
     useEffect(() => {
         fetch(`/api/question-data`, {
             method: 'POST',
@@ -39,15 +43,15 @@ function Quiz(this: any) {
             <Question
                 question={data[i].q}
                 options={[data[i].option1, data[i].option2, data[i].option3, data[i].option4]}
-                questionImg={data[i].questionImg}
+                green={mark[i]}
+                questionImg={data[i].questionImg ? data[i].questionImg : null}
                 />
-        )
+        );
     }
 
     // Runs upon quiz submission. Creates a FormData object that is
-    // then converted to a JSON object which can be parsed by the server.
-    // TO-DO: Also find a way to send back the questions to mark as
-    // in/correct.
+    // then converted to a JSON object which can be parsed by the server
+    // and can update the attributes of the individual questions.
     function handleSubmit(event: { preventDefault: () => void; target: any; }) {
         event.preventDefault();
         const form = event.target;
@@ -56,8 +60,18 @@ function Quiz(this: any) {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({formData, range})})
+            // This response returns an array of booleans which we
+            // use to determine which questions were correct or not.
             .then((res) => res.json())
-            .then((correct) => setCorrect(correct))
+            // Change the class name of each question if its respective
+            // index in the array is true. Then, add up all the true
+            // values to get a final count of correct answers.
+            .then((mark) => {
+                setMark(mark);
+                let correct = 0;
+                mark.forEach((q: boolean) => {if (q) correct++});
+                setCorrect(correct);
+            })
     }
 
     return (

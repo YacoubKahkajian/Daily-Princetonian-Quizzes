@@ -85,10 +85,10 @@ app.post("/api/submits", (req, res) => {
     // Since the order of the questions in the DB and the order of
     // the answerArray should be parallel, we can compare the two
     // in the same for loop.
-    let correct = 0;
+    let correct = [];
     let j = 0;
     for (let i = req.body.range.first - 1; i <= req.body.range.last - 1; i++) {
-        if (questions[i].correct === answerArray[j]) correct++;
+        correct[j] = questions[i].correct === answerArray[j];
         j++;
     }
     res.json(correct);

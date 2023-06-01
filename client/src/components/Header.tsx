@@ -11,10 +11,6 @@ function Header(){
                 <span className="links" onClick={()=>navigate("/")}>HOME</span>
                 <span className="links" onClick={()=>navigate("/")}>CATEGORIES</span>
             </div>
-            <div className="right">
-                <span className="links" onClick={()=>navigate("/")}>Sign in</span>
-                <span className="register" onClick={()=>navigate("/")}>Create free account</span>
-            </div>
         </div>
     )
 }
