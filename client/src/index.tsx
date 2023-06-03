@@ -14,7 +14,7 @@ root.render(
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<HomeScreen/>}></Route>
-                <Route path=":shortName/:first/:last" element={<Quiz/>}></Route>
+                <Route path=":shortName" element={<Quiz/>}></Route>
             </Routes>
         </BrowserRouter>
     </React.StrictMode>

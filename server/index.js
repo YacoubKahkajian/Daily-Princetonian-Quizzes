@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 3001;
 let rows;
 let questions;
 let quizList = [];
+let routeList = {};
 let questionList = [];
 
 // Load the spreadsheet data needed using the GoogleSpreadsheet
@@ -31,10 +32,11 @@ function getQuizzes() {
             date: rows[i].date,
             firstRow: rows[i].firstRow,
             lastRow: rows[i].lastRow,
-            route: rows[i].route,
-            imageURL: rows[i].imageURL
+            imageURL: rows[i].imageURL,
+            route: rows[i].route
         };
         quizList.push(obj);
+        routeList[rows[i].route] = i;
     }
 }
 
@@ -67,8 +69,16 @@ app.use(express.json());
 // to add to the resulting list. Clears the list afterward to avoid
 // duplication upon refresh.
 app.post("/api/question-data", (req, res) => {
-    getQuestions(req.body.first - 1, req.body.last - 1);
-    res.json(questionList);
+    const short = req.body.shortName;
+    const i = routeList[short];
+    getQuestions(quizList[i].firstRow - 1, quizList[i].lastRow - 1);
+    res.json({
+        questions: questionList,
+        range: {
+            first: quizList[i].firstRow - 1,
+            last: quizList[i].lastRow - 1
+        }
+    });
     questionList = [];
 });
 
@@ -87,7 +97,7 @@ app.post("/api/submits", (req, res) => {
     // in the same for loop.
     let correct = [];
     let j = 0;
-    for (let i = req.body.range.first - 1; i <= req.body.range.last - 1; i++) {
+    for (let i = req.body.range.first; i <= req.body.range.last; i++) {
         correct[j] = questions[i].correct === answerArray[j];
         j++;
     }

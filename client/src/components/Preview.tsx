@@ -12,7 +12,7 @@ interface props {
 function Preview(comp: props) {
     const navigate = useNavigate();
     function handleClick() {
-        navigate(`${comp.route}/${comp.first}/${comp.last}`);
+        navigate(`${comp.route}`);
     }
 
     return (

@@ -10,15 +10,14 @@ function Quiz(this: any) {
     // TO-DO: Would be nice if we could find a way to link this to
     // the shortname so people couldn't just type any numbers up there.
     let params = useParams();
-    const range = {
-        first: params.first,
-        last: params.last
-    }
+    const shortName = {shortName: params.shortName};
 
     // Updates the questions upon fetching them
     const [data, setData] = useState(Object);
     // Updates the number of questions correct upon the quiz's submission.
     const [correct, setCorrect] = useState(Number);
+    // Updates the range of questions to choose.
+    const [range, setRange] = useState(Object);
     // Updates the individual questions to mark as correct, where true represents a
     // question that was correctly answered.
     let initialMark : boolean[] = new Array(data.length).fill(false);
@@ -30,9 +29,12 @@ function Quiz(this: any) {
         fetch(`/api/question-data`, {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(range)})
+            body: JSON.stringify(shortName)})
             .then((res) => res.json())
-            .then((data) => setData(data))
+            .then(data => {
+                setData(data.questions);
+                setRange(data.range);
+            });
     }, []);
 
     // Constructs the question components using JSON data and
