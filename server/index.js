@@ -29,6 +29,7 @@ function getQuizzes() {
     for (let i = 0; i < rows.length; i++) {
         let obj = {
             name: rows[i].name,
+            subtitle: rows[i].subtitle,
             date: rows[i].date,
             firstRow: rows[i].firstRow,
             lastRow: rows[i].lastRow,
@@ -73,6 +74,8 @@ app.post("/api/question-data", (req, res) => {
     const i = routeList[short];
     getQuestions(quizList[i].firstRow - 1, quizList[i].lastRow - 1);
     res.json({
+        title: quizList[i].name,
+        subtitle: quizList[i].subtitle,
         questions: questionList,
         range: {
             first: quizList[i].firstRow - 1,

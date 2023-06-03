@@ -14,10 +14,10 @@ function Quiz(this: any) {
 
     // Updates the questions upon fetching them
     const [data, setData] = useState(Object);
-    // Updates the number of questions correct upon the quiz's submission.
     const [correct, setCorrect] = useState(Number);
-    // Updates the range of questions to choose.
     const [range, setRange] = useState(Object);
+    const [title, setTitle] = useState(String);
+    const [subtitle, setSub] = useState(String);
     // Updates the individual questions to mark as correct, where true represents a
     // question that was correctly answered.
     let initialMark : boolean[] = new Array(data.length).fill(false);
@@ -34,6 +34,8 @@ function Quiz(this: any) {
             .then(data => {
                 setData(data.questions);
                 setRange(data.range);
+                setTitle(data.title);
+                setSub(data.subtitle);
             });
     }, []);
 
@@ -79,8 +81,8 @@ function Quiz(this: any) {
     return (
         <div className="Quiz">
             <Header/>
-            <span className='quiz-title'>Title</span>
-            <span className='sub-title'>Subtitle</span>
+            <span className='quiz-title'>{title}</span>
+            <span className='sub-title'>{subtitle}</span>
             <form onSubmit={handleSubmit}>
                 {questions}
                 <input type="submit"/>
