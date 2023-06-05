@@ -14,11 +14,12 @@ function Question(props: {question: string, options: string[], green : boolean, 
     return (
         <div className={"Question" + (props.green ? " green" : "")}>
             <img className="question-img" src={props.questionImg} alt=" "></img>
-            <span className="question">{props.question}</span>
+            <span className="question">{props.question}
 
             <div className="choices">
                 {choices}
             </div>
+                </span>
         </div>
 );
 }
