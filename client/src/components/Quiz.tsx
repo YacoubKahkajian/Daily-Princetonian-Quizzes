@@ -82,11 +82,13 @@ function Quiz(this: any) {
         <>
             <div className="Header"><Header/></div>
             <div className="Quiz">
-                <span className='quiz-title'>{title}</span>
-                <span className='sub-title'>{subtitle}</span>
+                <div className='deets'>
+                    <span className='quiz-title'>{title}</span>
+                    <span className='sub-title'>{subtitle}</span>
+                </div>
                 <form className='form' onSubmit={handleSubmit}>
                     {questions}
-                    <input type="submit"/>
+                    <input type="submit" className='finish-quiz' value="CHECK!"/>
                 </form>
                 <p>{correct}</p>
             </div>

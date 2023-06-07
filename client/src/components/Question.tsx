@@ -7,19 +7,23 @@ function Question(props: {question: string, options: string[], green : boolean, 
         i++;
         if (option)
             choices.push(
-                <><label><input type="radio" id="html" name={props.question} value={i}/>{option}</label></>
+                <><label>
+                    <input type="radio" id="html" name={props.question} value={i}/>
+                    <div className="option">{option}
+                    </div>
+                </label></>
             );
     }
 
     return (
         <div className={"Question" + (props.green ? " green" : "")}>
             <img className="question-img" src={props.questionImg} alt=" "></img>
-            <span className="question">{props.question}
+            <div className="question">{props.question}
 
-            <div className="choices">
-                {choices}
+                <div className="choices">
+                    {choices}
+                </div>
             </div>
-                </span>
         </div>
 );
 }

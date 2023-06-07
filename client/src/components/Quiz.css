@@ -1,40 +1,28 @@
 .finish-quiz {
-    border: 3px solid black;  
-    position: relative;
-    top: -50px;
-    left: 85%;
-    background-color: rgb(253, 148, 0);
+    align-self: flex-start;
+    background-color: black;
+    border-radius: 50px;
+    border: none;
     color: white;
-    padding: 8px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
     cursor: pointer;
-    margin-left: 50px;
+    font-family: inherit;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 20px 30px;
+    text-align: center;
+    transition: all 0.1s ease-in-out;
 }
 
-.finish-quiz:before {
-  content: "";
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  border: 2px solid white;
+.finish-quiz:hover {
+    background-color: orange;
 }
 
 .quiz-title {
     font-size: 32px;
-    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     display: block;
-    margin-left: 72px;
-    margin-top: 15px;
-    margin-bottom: 5px;
 }
 
-.sub-title {
-    margin-left: 72px;
-    font-weight: 400;
+.deets {
+    margin: 15px 70px;
 }
