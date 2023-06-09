@@ -1,8 +1,15 @@
 .header{
     display: flex;
-    background: white;
+    background-color: orange;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 40px;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 .left {
@@ -11,23 +18,18 @@
     font-weight: bold;
 }
 
-.left img {
-    padding-right: 20px;
-}
-
-.right {
-    display: flex;
-    align-items: center;
-}
-
 .links {
     padding: 20px;
+    transition: ease 0.4s;
 }
 
-.register {
-    background-color: black;
+.links:hover{
     color: white;
-    border-radius: 10px;
-    align-items: center;
-    padding: 20px;
+    cursor: pointer;
+    transition: ease 0.4s;
+}
+
+.logo{
+    padding-right: 20px;
+    width: 60px;
 }

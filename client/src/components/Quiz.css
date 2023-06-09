@@ -1,28 +1,40 @@
 .finish-quiz {
-    align-self: flex-start;
+    width: calc(100% - 40vw);
+    margin-left: 20vw;
+    margin-right: 20vw;
     background-color: black;
     border-radius: 50px;
     border: none;
     color: white;
-    cursor: pointer;
     font-family: inherit;
-    font-size: 30px;
+    font-size: 4vh;
     font-weight: bold;
     padding: 20px 30px;
     text-align: center;
-    transition: all 0.1s ease-in-out;
+    transition: 0.4s ease-in-out;
 }
 
 .finish-quiz:hover {
     background-color: orange;
+    cursor: pointer;
+    transition: 0.4s ease-in-out;
 }
 
 .quiz-title {
-    font-size: 32px;
+    font-size: 9vh;
     font-weight: bold;
     display: block;
+    width: 100%;
+    margin-top: 120px;
 }
 
-.deets {
-    margin: 15px 70px;
+.sub-title{
+    font-size: 3.5vh;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 40px;
 }
