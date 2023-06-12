@@ -81,6 +81,13 @@ input[type="radio"] {
 }
 
 @media only screen and (max-width: 650px) {
+    .question-container {
+        flex-direction: column;
+        row-gap: 20px;
+    }
 
+    .question-img {
+        width: 90%;
+    }
 }
 

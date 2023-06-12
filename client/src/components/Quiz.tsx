@@ -85,7 +85,7 @@ function Quiz(this: any) {
             <span className='sub-title'>{subtitle}</span>
             <form className='form' onSubmit={handleSubmit}>
                 {questions}
-                <input type="submit" className='finish-quiz' value="Check Answers"/>
+                <input type="submit" className='finish-quiz' value="Check answers"/>
             </form>
             <p>{correct}</p>
         </>
