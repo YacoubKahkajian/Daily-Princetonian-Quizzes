@@ -59,10 +59,14 @@ function Quiz(this: any) {
         );
     }
 
+    // We store the responses and final markings in separate states, so
+    // we can withhold the results if there is a blank answer and show
+    // them if the user decides to submit anyway.
+    let [responses, setResponses] = useState(Object);
+
     // Runs upon quiz submission. Creates a FormData object that is
     // then converted to a JSON object which can be parsed by the server
     // and can update the attributes of the individual questions.
-    let [responses, setResponses] = useState(Object);
     function handleSubmit(event: { preventDefault: () => void; target: any }) {
         event.preventDefault();
         const form = event.target;
@@ -77,13 +81,15 @@ function Quiz(this: any) {
             .then((mark) => {setResponses(mark)})
     }
 
+    // Right after we update the responses array, we should check if it
+    // contains any unanswered questions and open the warning dialog if
+    // it does so.
     useEffect(() => {
-        console.log(responses);
-        if (responses.blanks) blankWarning();
+        if (responses.blanks) openModal();
         else if (responses.blanks != null) markAnswers();
     }, [responses]);
 
-    function blankWarning() {
+    function openModal() {
         setIsOpen(true);
     }
 
@@ -92,6 +98,8 @@ function Quiz(this: any) {
         setResponses([]);
     }
 
+    // Update the CSS so correct questions are marked accordingly,
+    // and we get a final count of correct answers.
     function markAnswers() {
         setMark(responses.correct);
         let correct = 0;
@@ -103,12 +111,16 @@ function Quiz(this: any) {
     return (
         <>
             <Header/>
-            <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="test">
+            <Modal isOpen={modalIsOpen}
+                   onRequestClose={closeModal}
+                   contentLabel="Blank answer warning"
+                   className="Modal"
+                   overlayClassName="Overlay">
                 <h1>Easy, tiger!</h1>
-                <p>You left at least one question blank. Want to see what you skipped before you submit?</p>
+                <div style={{fontSize: '20px'}}>You left at least one question blank. Want to see what you skipped before you submit?</div>
                 <form>
-                    <button onClick={closeModal}>Okay</button>
-                    <button onClick={markAnswers}>Submit anyways</button>
+                    <button className='modal-option' onClick={closeModal}>Okay</button>
+                    <button className='modal-option' onClick={markAnswers}>Submit anyways</button>
                 </form>
             </Modal>
             <div id="root">

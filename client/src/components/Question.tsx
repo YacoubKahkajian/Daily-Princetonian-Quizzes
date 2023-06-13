@@ -4,6 +4,9 @@ function Question(props: {question: string, options: string[], green : boolean, 
     let choices = [];
     let i = 0;
     for (const option of props.options) {
+        // Every choices list has a hidden zero value checked off by default.
+        // Zero values are parsed by the server as unanswered questions in the
+        // answerArray and result in a warning for the user.
         choices.push(
             <input type="radio" id="html" name={props.question} value={0} defaultChecked/>
         )

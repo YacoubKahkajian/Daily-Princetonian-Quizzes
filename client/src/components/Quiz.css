@@ -39,6 +39,39 @@
     margin-top: 40px;
 }
 
+.Modal {
+    background-color: ghostwhite;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.50);
+    border-radius: 20px;
+    padding: 0 20px 20px 20px;
+    position: absolute;
+    top: 30%;
+    left: 25%;
+    right: 25%;
+}
+
+.Overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(75, 22, 2, 0.55);
+}
+
+.modal-option {
+    margin-right: 10px;
+    margin-top: 20px;
+    background-color: black;
+    border-radius: 30px;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: inherit;
+}
+
 @media only screen and (max-width: 650px) {
     .finish-quiz {
         width: 90%;
@@ -52,5 +85,14 @@
 
     .sub-title {
         font-size: 3vh;
+    }
+
+    .Modal {
+        left: 5%;
+        right: 5%;
+    }
+
+    .modal-option {
+        font-size: 20px;
     }
 }
