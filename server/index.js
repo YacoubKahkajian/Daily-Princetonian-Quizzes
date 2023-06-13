@@ -92,8 +92,11 @@ app.post("/api/submits", (req, res) => {
 
     // Put the placement of the option chosen in an array.
     let answerArray = [];
-    for (let i = 0; i < formAnswers.length; i++)
+    let blanks = false;
+    for (let i = 0; i < formAnswers.length; i++) {
         answerArray[i] = formAnswers[i][1];
+        if (formAnswers[i][1] == 0) blanks = true;
+    }
 
     // Since the order of the questions in the DB and the order of
     // the answerArray should be parallel, we can compare the two
@@ -104,5 +107,5 @@ app.post("/api/submits", (req, res) => {
         correct[j] = questions[i].correct === answerArray[j];
         j++;
     }
-    res.json(correct);
+    res.json({blanks, correct});
 });

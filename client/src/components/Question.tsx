@@ -4,6 +4,9 @@ function Question(props: {question: string, options: string[], green : boolean, 
     let choices = [];
     let i = 0;
     for (const option of props.options) {
+        choices.push(
+            <input type="radio" id="html" name={props.question} value={0} defaultChecked/>
+        )
         i++;
         if (option)
             choices.push(

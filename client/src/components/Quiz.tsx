@@ -1,9 +1,12 @@
 import './Quiz.css';
 import Question from './Question';
 import Header from './Header';
+import Modal from 'react-modal';
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 
+// Tells screen readers to ignore the background when a modal appears.
+Modal.setAppElement('#root');
 function Quiz(this: any) {
     // Takes the first and last rows from the spreadsheet that should
     // be considered from the URL of the quiz.
@@ -22,6 +25,8 @@ function Quiz(this: any) {
     // question that was correctly answered.
     let initialMark : boolean[] = new Array(data.length).fill(false);
     const [mark, setMark] = useState(initialMark);
+    // Required to use the react-modal library.
+    const [modalIsOpen, setIsOpen] = useState(false);
 
     // Fetch the quiz questions from the Google Sheet, using the
     // parameters from the URL, and updates the page's state.
@@ -45,6 +50,7 @@ function Quiz(this: any) {
     for (let i= 0; i < data.length; i++) {
         questions.push(
             <Question
+                key={data[i].q}
                 question={data[i].q}
                 options={[data[i].option1, data[i].option2, data[i].option3, data[i].option4]}
                 green={mark[i]}
@@ -56,7 +62,8 @@ function Quiz(this: any) {
     // Runs upon quiz submission. Creates a FormData object that is
     // then converted to a JSON object which can be parsed by the server
     // and can update the attributes of the individual questions.
-    function handleSubmit(event: { preventDefault: () => void; target: any; }) {
+    let [responses, setResponses] = useState(Object);
+    function handleSubmit(event: { preventDefault: () => void; target: any }) {
         event.preventDefault();
         const form = event.target;
         const formData = Object.fromEntries(new FormData(form));
@@ -67,26 +74,51 @@ function Quiz(this: any) {
             // This response returns an array of booleans which we
             // use to determine which questions were correct or not.
             .then((res) => res.json())
-            // Change the class name of each question if its respective
-            // index in the array is true. Then, add up all the true
-            // values to get a final count of correct answers.
-            .then((mark) => {
-                setMark(mark);
-                let correct = 0;
-                mark.forEach((q: boolean) => {if (q) correct++});
-                setCorrect(correct);
-            })
+            .then((mark) => {setResponses(mark)})
+    }
+
+    useEffect(() => {
+        console.log(responses);
+        if (responses.blanks) blankWarning();
+        else if (responses.blanks != null) markAnswers();
+    }, [responses]);
+
+    function blankWarning() {
+        setIsOpen(true);
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+        setResponses([]);
+    }
+
+    function markAnswers() {
+        setMark(responses.correct);
+        let correct = 0;
+        responses.correct.forEach((q: boolean) => {if (q) correct++});
+        setCorrect(correct);
+        closeModal();
     }
 
     return (
         <>
             <Header/>
-            <span className='quiz-title'>{title}</span>
-            <span className='sub-title'>{subtitle}</span>
-            <form className='form' onSubmit={handleSubmit}>
-                {questions}
-                <input type="submit" className='finish-quiz' value="Check answers"/>
-            </form>
+            <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="test">
+                <h1>Easy, tiger!</h1>
+                <p>You left at least one question blank. Want to see what you skipped before you submit?</p>
+                <form>
+                    <button onClick={closeModal}>Okay</button>
+                    <button onClick={markAnswers}>Submit anyways</button>
+                </form>
+            </Modal>
+            <div id="root">
+                <span className='quiz-title'>{title}</span>
+                <span className='sub-title'>{subtitle}</span>
+                <form className='form' onSubmit={handleSubmit}>
+                    {questions}
+                    <input type="submit" className='finish-quiz' value="Check answers"/>
+                </form>
+            </div>
             <p>{correct}</p>
         </>
     );
