@@ -1,6 +1,7 @@
 import './Quiz.css';
 import Question from './Question';
 import Header from './Header';
+import Results from './Results'
 import Modal from 'react-modal';
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
@@ -21,6 +22,7 @@ function Quiz(this: any) {
     const [range, setRange] = useState(Object);
     const [title, setTitle] = useState(String);
     const [subtitle, setSub] = useState(String);
+    const [isSubmitted, setSubmitted] = useState(false);
     // Updates the individual questions to mark as correct, where true represents a
     // question that was correctly answered.
     let initialMark : boolean[] = new Array(data.length).fill(false);
@@ -105,6 +107,7 @@ function Quiz(this: any) {
         let correct = 0;
         responses.correct.forEach((q: boolean) => {if (q) correct++});
         setCorrect(correct);
+        setSubmitted(true);
         closeModal();
     }
 
@@ -128,10 +131,10 @@ function Quiz(this: any) {
                 <span className='sub-title'>{subtitle}</span>
                 <form className='form' onSubmit={handleSubmit}>
                     {questions}
-                    <input type="submit" className='finish-quiz' value="Check answers"/>
+                    <input type="submit" className={'finish-quiz' + (isSubmitted ? " hidden" : "")} value="Check answers"/>
                 </form>
+                <Results correct={correct} total={mark} visible={isSubmitted} name={title}></Results>
             </div>
-            <p>{correct}</p>
         </>
     );
 }

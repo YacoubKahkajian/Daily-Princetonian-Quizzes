@@ -1,0 +1,58 @@
+.results-window {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+button {
+    cursor: pointer;
+    font-family: inherit;
+    border: none;
+    background-color: #eaeaea;
+    padding: 20px;
+    margin-left: 10px;
+    border-radius: 50px;
+    font-size: 16px;
+    transition: 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: black;
+    color: white;
+    transform: scale(110%);
+    transition: 0.2s ease-in-out;
+}
+
+button:active {
+    transform: scale(90%);
+    transition: 0.1s ease-in-out;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes bounce {
+    0% {}
+    30% {scale: 90%;}
+    70% {scale: 110%;}
+    100% {scale: 100%;}
+}
+
+.visible {
+    animation: 0.3s ease-in 0s bounce;
+}
+
+.bold {
+    font-weight: bold;
+    font-size: 5vh;
+}
+
+@media only screen and (max-width: 650px) {
+
+}
