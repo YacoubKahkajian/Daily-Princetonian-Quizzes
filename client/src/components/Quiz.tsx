@@ -56,6 +56,7 @@ function Quiz(this: any) {
                 question={data[i].q}
                 options={[data[i].option1, data[i].option2, data[i].option3, data[i].option4]}
                 green={mark[i]}
+                disabled={isSubmitted}
                 questionImg={data[i].questionImg ? data[i].questionImg : null}
                 />
         );

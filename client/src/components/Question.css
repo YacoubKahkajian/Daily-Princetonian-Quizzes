@@ -57,6 +57,11 @@ input[type="radio"] {
     cursor: pointer;
 }
 
+.disabled {
+    cursor: not-allowed;
+    color: gray;
+}
+
 .option:hover {
     transform: scale(110%);
     animation-duration: 100ms;
@@ -73,6 +78,7 @@ input[type="radio"] {
     animation: 0.3s ease-in 0s bounce;
     font-weight: bold;
     background-color: #f15a24;
+    color: black;
 }
 
 .green {

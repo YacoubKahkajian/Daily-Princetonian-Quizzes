@@ -1,6 +1,6 @@
 import './Question.css'
 
-function Question(props: {question: string, options: string[], green : boolean, questionImg?: string}) {
+function Question(props: {question: string, options: string[], green : boolean, disabled: boolean, questionImg?: string}) {
     let choices = [];
     let i = 0;
     for (const option of props.options) {
@@ -14,8 +14,8 @@ function Question(props: {question: string, options: string[], green : boolean, 
         if (option)
             choices.push(
                 <><label>
-                    <input type="radio" id="html" name={props.question} value={i}/>
-                    <div className="option">{option}</div>
+                    <input type="radio" id="html" name={props.question} value={i} disabled={props.disabled}/>
+                    <div className={"option" + (props.disabled ? " disabled" : "")}>{option}</div>
                 </label></>
             );
     }
