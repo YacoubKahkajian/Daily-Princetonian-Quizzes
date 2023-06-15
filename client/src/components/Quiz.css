@@ -14,7 +14,7 @@
 }
 
 .finish-quiz:hover {
-    background-color: orange;
+    background-color: #f15a24;
     cursor: pointer;
     transform: scale(110%);
     transition: 0.2s ease-in-out;
@@ -90,7 +90,7 @@
     .finish-quiz:hover {}
 
     .finish-quiz:active {
-        background-color: orange;
+        background-color: #f15a24;
         cursor: pointer;
         transition: 0.1s ease-in-out;
     }

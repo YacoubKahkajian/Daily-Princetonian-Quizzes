@@ -71,11 +71,12 @@ input[type="radio"] {
 :checked + .option {
     animation: 0.3s ease-in 0s bounce;
     font-weight: bold;
-    background-color: orange;
+    background-color: #f15a24;
 }
 
 .green {
-    border: #6ad56a solid 4px;
+    border: #6ad56a solid 10px;
+    box-shadow: 0 0 10px #6ad56a;
     border-radius: 20px;
 }
 
@@ -87,6 +88,10 @@ input[type="radio"] {
 
     .question-img {
         width: 90%;
+    }
+
+    .green {
+        padding: 10px;
     }
 }
 

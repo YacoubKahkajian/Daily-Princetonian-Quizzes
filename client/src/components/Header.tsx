@@ -8,10 +8,9 @@ function Header(){
         <div className="header">
             <div className="left">
                 <a href="https://dailyprincetonian.com">
-                    <img className="logo" src="https://prince-web-assets.s3.amazonaws.com/projects.dailyprincetonian.com/quiz-app/tiger-head.png" alt="The Daily Princetonian"></img>
+                    <span className="wordmark">THE DAILY PRINCETONIAN&nbsp;&nbsp;&nbsp;|</span>
                 </a>
-                <span className="links" onClick={()=>navigate("/")}>HOME</span>
-                <span className="links" onClick={()=>navigate("/")}>CATEGORIES</span>
+                <span className="links" onClick={()=>navigate("/")}>QUIZZES</span>
             </div>
         </div>
     )

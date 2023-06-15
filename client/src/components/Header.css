@@ -1,12 +1,16 @@
-.header{
+a {
+    text-decoration: none;
+}
+
+.header {
+    min-height: 64px;
     display: flex;
-    background-color: orange;
+    background-color: white;
+    box-shadow: 0 0 4px;
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 40px;
+    padding-left: 25px;
     position: fixed;
     top: 0;
     left: 0;
@@ -19,17 +23,22 @@
 }
 
 .links {
-    padding: 20px;
+    font-family: franklin-gothic-urw, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 6px 16px;
     transition: ease 0.4s;
 }
 
 .links:hover{
-    color: white;
+    background-color: rgba(0, 0, 0, 0.04);
     cursor: pointer;
     transition: ease 0.4s;
 }
 
-.logo{
-    padding-right: 20px;
-    width: 60px;
+.wordmark {
+    font-family: minion-pro, "Times New Roman", serif;
+    font-weight: normal;
+    font-size: 1.5rem;
+    color: black;
 }
