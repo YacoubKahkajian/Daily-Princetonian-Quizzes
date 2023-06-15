@@ -1,5 +1,6 @@
-body {
-    font-family: franklin-gothic-urw, sans-serif;
+.content {
+    padding-left: 7vw;
+    padding-right: 7vw;
 }
 
 .finish-quiz {
@@ -86,6 +87,11 @@ body {
 }
 
 @media only screen and (max-width: 650px) {
+    .content {
+        padding-left: 5vw;
+        padding-right: 5vw;
+    }
+
     .finish-quiz {
         width: 90%;
         font-size: 6vw;

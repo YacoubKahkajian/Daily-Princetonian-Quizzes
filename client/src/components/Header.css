@@ -3,23 +3,29 @@ a {
 }
 
 .header {
-    min-height: 64px;
-    display: flex;
+    align-items: center;
     background-color: white;
     box-shadow: 0 0 4px;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 25px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 64px;
     position: fixed;
     top: 0;
-    left: 0;
+    width: 100%;
 }
 
 .left {
+    padding-left: 24px;
+    padding-right: 24px;
     display: flex;
     align-items: center;
     font-weight: bold;
+    width: 100%;
+    max-width: 1536px;
 }
 
 .links {

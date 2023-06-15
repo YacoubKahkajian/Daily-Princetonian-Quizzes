@@ -113,27 +113,29 @@ function Quiz(this: any) {
 
     return (
         <>
-            <Header/>
-            <Modal isOpen={modalIsOpen}
-                   onRequestClose={closeModal}
-                   contentLabel="Blank answer warning"
-                   className="Modal"
-                   overlayClassName="Overlay">
-                <h1>Easy, tiger!</h1>
-                <div style={{fontSize: '20px'}}>You left at least one question blank. Want to see what you skipped before you submit?</div>
-                <form>
-                    <button className='modal-option' onClick={closeModal}>Okay</button>
-                    <button className='modal-option' onClick={markAnswers}>Submit anyways</button>
-                </form>
-            </Modal>
-            <div id="root">
-                <span className='quiz-title'>{title}</span>
-                <span className='sub-title'>{subtitle}</span>
-                <form className='form' onSubmit={handleSubmit}>
-                    {questions}
-                    <input type="submit" className={'finish-quiz' + (isSubmitted ? " hidden" : "")} value="Check answers"/>
-                </form>
-                <Results correct={correct} total={mark} visible={isSubmitted} name={title}></Results>
+            <div className="content">
+                <Header/>
+                <Modal isOpen={modalIsOpen}
+                       onRequestClose={closeModal}
+                       contentLabel="Blank answer warning"
+                       className="Modal"
+                       overlayClassName="Overlay">
+                    <h1>Easy, tiger!</h1>
+                    <div style={{fontSize: '20px'}}>You left at least one question blank. Want to see what you skipped before you submit?</div>
+                    <form>
+                        <button className='modal-option' onClick={closeModal}>Okay</button>
+                        <button className='modal-option' onClick={markAnswers}>Submit anyways</button>
+                    </form>
+                </Modal>
+                <div id="root">
+                    <span className='quiz-title'>{title}</span>
+                    <span className='sub-title'>{subtitle}</span>
+                    <form className='form' onSubmit={handleSubmit}>
+                        {questions}
+                        <input type="submit" className={'finish-quiz' + (isSubmitted ? " hidden" : "")} value="Check answers"/>
+                    </form>
+                    <Results correct={correct} total={mark} visible={isSubmitted} name={title}></Results>
+                </div>
             </div>
         </>
     );
