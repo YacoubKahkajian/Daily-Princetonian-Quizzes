@@ -1,4 +1,5 @@
 import {useNavigate} from "react-router-dom";
+import './Preview.css';
 
 interface props {
     name: string;
@@ -17,9 +18,11 @@ function Preview(comp: props) {
 
     return (
         <div className="big-block" onClick={handleClick}>
+            <div className="details">
+                <span className="name">{comp.name}</span><br></br>
+                <span className="date">{comp.date}</span>
+            </div>
             <img src={comp.image} alt=""></img>
-            <span className="name">{comp.name}</span><br></br>
-            <span className="date">Created: {comp.date}</span>
         </div>
     )
 }

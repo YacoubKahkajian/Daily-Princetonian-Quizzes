@@ -26,14 +26,15 @@ function HomeScreen() {
           route={data[i].route}/>
         </li>
 );
-  let quiz1 = [];
-
 
   return (
     <div className="Home">
       <Header></Header>
-      <p className="page-title">Quizzes</p>
-        <span className="featured">{quizzes[0]} </span>
+        <div className="featured-banner">
+            <div className="featured-text">THE LATEST QUIZ</div>
+            <div className="featured">{quizzes[0]} </div>
+        </div>
+        <h1 style={{textAlign: 'center'}}>PREVIOUS QUIZZES</h1>
         <span className="grid">{quizzes.slice(1)}</span>
     </div>
   );

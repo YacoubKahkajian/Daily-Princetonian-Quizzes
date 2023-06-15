@@ -1,3 +1,7 @@
+body {
+    font-family: franklin-gothic-urw, sans-serif;
+}
+
 .finish-quiz {
     width: 40%;
     background-color: black;
@@ -35,6 +39,7 @@
 
 .sub-title{
     font-size: 3.5vh;
+    font-family: minion-pro, "Times New Roman", serif;
 }
 
 .form {

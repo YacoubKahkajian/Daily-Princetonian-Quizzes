@@ -1,19 +1,49 @@
 .big-block {
-    background-color: antiquewhite;
-    margin-bottom: 15px;
-    margin-left: 90px;
-    display: block;
-    width: 200px;
-    padding-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: fit-content;
+    border: 1.5px solid rgb(241, 90, 36);
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 0.75rem;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.big-block:hover {
+    background-color: #f15a24;
+}
+
+.big-block:hover > .details > .date {
+    color: black;
+}
+
+.big-block > img {
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+    object-position: 100% 0;
+    border-radius: 10px;
+}
+
+.details {
+    text-align: center;
+    margin-bottom: 5px;
 }
 
 .name {
-    font-size:larger;
-    font-weight:400;
+    font-family: franklin-gothic-urw, sans-serif;
+    font-size: 1.5rem;
+    font-weight: bold;
     padding: 5px;
 }
 
 .date {
-    font-weight: 300;
-    padding: 5px;
+    font-weight: 500;
+    font-size: 1rem;
+    font-family: franklin-gothic-urw, sans-serif;
+    line-height: 1.167;
+    color: grey;
 }
