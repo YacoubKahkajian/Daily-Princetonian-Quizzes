@@ -87,6 +87,12 @@ input[type="radio"] {
     border-radius: 20px;
 }
 
+.red {
+    border: #b43333 solid 10px;
+    box-shadow: 0 0 10px #b43333;
+    border-radius: 20px;
+}
+
 @media only screen and (max-width: 650px) {
     .question-container {
         flex-direction: column;
@@ -97,7 +103,7 @@ input[type="radio"] {
         width: 90%;
     }
 
-    .green {
+    .green, .red {
         padding: 10px;
     }
 }

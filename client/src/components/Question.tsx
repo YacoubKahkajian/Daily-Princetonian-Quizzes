@@ -1,4 +1,5 @@
 import './Question.css'
+import {useEffect, useState} from "react";
 
 function Question(props: {question: string, options: string[], green : boolean, disabled: boolean, questionImg?: string}) {
     let choices = [];
@@ -20,8 +21,15 @@ function Question(props: {question: string, options: string[], green : boolean, 
             );
     }
 
+    const [color, setColor] = useState(String);
+    useEffect(() => {
+        console.log("hi");
+        if (props.green) setColor(" green");
+        else if (props.disabled) setColor(" red");
+    }, [props.disabled]);
+
     return (
-        <div className={"question-container" + (props.green ? " green" : "")}>
+        <div className={"question-container " + color}>
             <img className="question-img" src={props.questionImg} alt=" "></img>
             <div className="question">{props.question}
                 <div className="choices">
