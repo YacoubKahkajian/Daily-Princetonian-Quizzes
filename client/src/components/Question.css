@@ -15,6 +15,9 @@
 }
 
 .question {
+    display: flex;
+    max-width: 50%;
+    flex-direction: column;
     font-size: 3.5vh;
     font-weight: bold;
 }
@@ -25,7 +28,7 @@
     display: inline-block;
     margin-bottom: 0;
     flex-direction: column;
-    align-self: center;
+    align-self: flex-start;
     object-fit: cover;
     object-position: 100% 0;
     border-radius: 10px;
@@ -93,10 +96,25 @@ input[type="radio"] {
     border-radius: 20px;
 }
 
+.explain {
+    margin-top: 20px;
+    font-weight: normal;
+    font-size: 3vh;
+    font-family: minion-pro, "Times New Roman", serif;
+}
+
+.hidden {
+    display: none;
+}
+
 @media only screen and (max-width: 650px) {
     .question-container {
         flex-direction: column;
         row-gap: 20px;
+    }
+
+    .question {
+        max-width: 100%;
     }
 
     .question-img {

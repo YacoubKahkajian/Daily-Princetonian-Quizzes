@@ -51,7 +51,9 @@ function getQuestions(first, last) {
             option2: questions[i].option2,
             option3: questions[i].option3,
             option4: questions[i].option4,
-            questionImg: questions[i].questionImg
+            questionImg: questions[i].questionImg,
+            altText: questions[i].alt,
+            explain: questions[i].explination
         }
         questionList.push(obj);
     }

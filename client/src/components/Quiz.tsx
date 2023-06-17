@@ -63,6 +63,8 @@ function Quiz(this: any) {
                 green={mark[i]}
                 disabled={isSubmitted}
                 questionImg={data[i].questionImg ? data[i].questionImg : null}
+                altText={data[i].altText}
+                explain={data[i].explain}
                 />
         );
     }

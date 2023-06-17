@@ -1,7 +1,7 @@
 import './Question.css'
 import {useEffect, useState} from "react";
 
-function Question(props: {question: string, options: string[], green : boolean, disabled: boolean, questionImg?: string}) {
+function Question(props: {question: string, options: string[], green : boolean, disabled: boolean, questionImg?: string, altText?: string, explain?: string}) {
     let choices = [];
     let i = 0;
     for (const option of props.options) {
@@ -30,11 +30,12 @@ function Question(props: {question: string, options: string[], green : boolean, 
 
     return (
         <div className={"question-container " + color}>
-            <img className="question-img" src={props.questionImg} alt=" "></img>
+            <img className="question-img" src={props.questionImg} alt={props.altText}></img>
             <div className="question">{props.question}
                 <div className="choices">
                     {choices}
                 </div>
+                <div className={"explain" + (!props.disabled ? " hidden" : "")}>{props.explain}</div>
             </div>
         </div>
 );
