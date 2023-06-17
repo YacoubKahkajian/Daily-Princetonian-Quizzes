@@ -2,6 +2,8 @@ require('dotenv').config();
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 const express = require("express");
 const doc = new GoogleSpreadsheet(process.env.SHEET_ID);
+let sheet1;
+let sheet2;
 const app = express();
 const PORT = process.env.PORT || 3001;
 let rows;
@@ -17,15 +19,16 @@ let questionList = [];
         client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
         private_key: process.env.GOOGLE_PRIVATE_KEY,
     });
-    await doc.loadInfo(); // loads sheets
-    const sheet1 = doc.sheetsByIndex[0];
-    const sheet2 = doc.sheetsByIndex[1];
+    await doc.loadInfo();
+    sheet1 = doc.sheetsByIndex[0];
+    sheet2 = doc.sheetsByIndex[1];
     rows = await sheet1.getRows();
     questions = await sheet2.getRows();
     getQuizzes();
 }());
 
 function getQuizzes() {
+    quizList = [];
     for (let i = 0; i < rows.length; i++) {
         let obj = {
             name: rows[i].name,
@@ -43,7 +46,7 @@ function getQuizzes() {
 }
 
 // TO-DO: Find a way to use an array for the options?
-function getQuestions(first, last) {
+async function getQuestions(first, last) {
     for (let i = first; i <= last; i++) {
         let obj = {
             q: questions[i].q,
@@ -53,13 +56,15 @@ function getQuestions(first, last) {
             option4: questions[i].option4,
             questionImg: questions[i].questionImg,
             altText: questions[i].alt,
-            explain: questions[i].explination
+            explain: questions[i].explanation
         }
         questionList.push(obj);
     }
 }
 
-app.get("/api/quiz-data", (req, res) => {
+app.get("/api/quiz-data", async (req, res) => {
+    rows = await sheet1.getRows();
+    await getQuizzes();
     res.json(quizList);
 });
 
@@ -72,11 +77,12 @@ app.use(express.json());
 // Uses the body of the request to get a specific range of questions
 // to add to the resulting list. Clears the list afterward to avoid
 // duplication upon refresh.
-app.post("/api/question-data", (req, res) => {
+app.post("/api/question-data", async (req, res) => {
+    questions = await sheet2.getRows();
     const short = req.body.shortName;
     const i = routeList[short];
-    getQuestions(quizList[i].firstRow - 1, quizList[i].lastRow - 1);
-    res.json({
+    await getQuestions(quizList[i].firstRow - 1, quizList[i].lastRow - 1);
+    await res.json({
         title: quizList[i].name,
         subtitle: quizList[i].subtitle,
         author: quizList[i].author,
