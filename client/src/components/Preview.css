@@ -13,7 +13,7 @@
 }
 
 .big-block:hover {
-    background-color: #f15a24;
+    background-color: rgba(0, 0, 0, 0.15);
 }
 
 .big-block:hover > .details > .date {

@@ -3,7 +3,7 @@ import {useState} from "react";
 
 function Results(props: {correct: number, total: boolean[], visible: boolean, name: string}) {
     let shareString = "";
-    const [copyButtonText, setCopyButtonText] = useState("Copy to clipboard")
+    const [copyButtonText, setCopyButtonText] = useState("Copy results")
     function generateShare() {
         if (!shareString) {
             shareString += `${props.name}: ${props.correct}/${props.total.length}\n`
