@@ -31,6 +31,7 @@ function getQuizzes() {
             name: rows[i].name,
             subtitle: rows[i].subtitle,
             date: rows[i].date,
+            author: rows[i].author,
             firstRow: rows[i].firstRow,
             lastRow: rows[i].lastRow,
             imageURL: rows[i].imageURL,
@@ -76,6 +77,8 @@ app.post("/api/question-data", (req, res) => {
     res.json({
         title: quizList[i].name,
         subtitle: quizList[i].subtitle,
+        author: quizList[i].author,
+        date: quizList[i].date,
         questions: questionList,
         range: {
             first: quizList[i].firstRow - 1,

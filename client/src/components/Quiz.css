@@ -30,19 +30,6 @@
     transition: 0.1s ease-in-out;
 }
 
-.quiz-title {
-    font-size: 9vh;
-    font-weight: bold;
-    display: block;
-    width: 100%;
-    margin-top: 120px;
-}
-
-.sub-title{
-    font-size: 3.5vh;
-    font-family: minion-pro, "Times New Roman", serif;
-}
-
 .form {
     display: flex;
     flex-direction: column;
@@ -104,14 +91,6 @@
         background-color: #f15a24;
         cursor: pointer;
         transition: 0.1s ease-in-out;
-    }
-
-    .quiz-title {
-        font-size: 4vh;
-    }
-
-    .sub-title {
-        font-size: 3vh;
     }
 
     .Modal {

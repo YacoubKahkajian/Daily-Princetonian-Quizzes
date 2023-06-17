@@ -5,6 +5,7 @@ import Results from './Results'
 import Modal from 'react-modal';
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
+import Masthead from "./Masthead";
 
 // Tells screen readers to ignore the background when a modal appears.
 Modal.setAppElement('#root');
@@ -22,6 +23,8 @@ function Quiz(this: any) {
     const [range, setRange] = useState(Object);
     const [title, setTitle] = useState(String);
     const [subtitle, setSub] = useState(String);
+    const [author, setAuthor] = useState(String);
+    const [date, setDate] = useState(String);
     const [isSubmitted, setSubmitted] = useState(false);
     // Updates the individual questions to mark as correct, where true represents a
     // question that was correctly answered.
@@ -43,6 +46,8 @@ function Quiz(this: any) {
                 setRange(data.range);
                 setTitle(data.title);
                 setSub(data.subtitle);
+                setAuthor(data.author);
+                setDate(data.date);
             });
     }, []);
 
@@ -129,8 +134,7 @@ function Quiz(this: any) {
                     </form>
                 </Modal>
                 <div id="root">
-                    <span className='quiz-title'>{title}</span>
-                    <span className='sub-title'>{subtitle}</span>
+                    <Masthead title={title} subtitle={subtitle} author={author} date={date}></Masthead>
                     <form className='form' onSubmit={handleSubmit}>
                         {questions}
                         <input type="submit" className={'finish-quiz' + (isSubmitted ? " hidden" : "")} value="Check answers"/>
