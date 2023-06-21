@@ -14,7 +14,7 @@ function HomeScreen() {
 
   let quizzes = [];
   
-  for (let i = 0; i < data.length; i++)
+  for (let i = data.length - 1; i >= 0; i--)
     quizzes.push(
         <li key = {data[i].route}>
           <Preview
