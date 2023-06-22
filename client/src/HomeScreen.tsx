@@ -5,11 +5,13 @@ import Preview from "./components/Preview"
 
 function HomeScreen() {
   const [data, setData] = useState(Object);
+  const [isLoaded, setLoaded] = useState(false);
 
   useEffect(() => {
     fetch("api/quiz-data")
         .then((res) => res.json())
         .then((data) => setData(data))
+        .then(() => setLoaded(true))
   }, []);
 
   let quizzes = [];
@@ -28,15 +30,18 @@ function HomeScreen() {
 );
 
   return (
-    <div className="Home">
-      <Header></Header>
-        <div className="featured-banner">
-            <div className="featured-text">THE LATEST QUIZ</div>
-            <div className="featured">{quizzes[0]} </div>
-        </div>
-        <h1 style={{textAlign: 'center'}}>PREVIOUS QUIZZES</h1>
-        <span className="grid">{quizzes.slice(1)}</span>
-    </div>
+      <div className="Home">
+          <Header></Header>
+          <p className={'loading' + (isLoaded ? " hidden" : "")}>Loading...</p>
+          <div className={(!isLoaded ? "hidden" : "")}>
+              <div className={"featured-banner"}>
+                  <div className="featured-text">THE LATEST QUIZ</div>
+                  <div className="featured">{quizzes[0]} </div>
+              </div>
+              <h1 style={{textAlign: 'center'}}>PREVIOUS QUIZZES</h1>
+              <span className="grid">{quizzes.slice(1)}</span>
+          </div>
+      </div>
   );
 }
 

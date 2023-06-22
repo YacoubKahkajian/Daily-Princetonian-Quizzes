@@ -32,6 +32,8 @@ function Quiz(this: any) {
     const [mark, setMark] = useState(initialMark);
     // Required to use the react-modal library.
     const [modalIsOpen, setIsOpen] = useState(false);
+    // Detect when the page is finished loading
+    const [isLoaded, setLoaded] = useState(false);
 
     // Fetch the quiz questions from the Google Sheet, using the
     // parameters from the URL, and updates the page's state.
@@ -48,7 +50,8 @@ function Quiz(this: any) {
                 setSub(data.subtitle);
                 setAuthor(data.author);
                 setDate(data.date);
-            });
+                setLoaded(true);
+            })
     }, []);
 
     // Constructs the question components using JSON data and
@@ -135,7 +138,8 @@ function Quiz(this: any) {
                         <button className='modal-option' onClick={markAnswers}>Submit anyways</button>
                     </form>
                 </Modal>
-                <div id="root">
+                <p className={'loading' + (isLoaded ? " hidden" : "")}>Loading...</p>
+                <div id='root' className={(!isLoaded ? "hidden" : "")}>
                     <Masthead title={title} subtitle={subtitle} author={author} date={date}></Masthead>
                     <form className='form' onSubmit={handleSubmit}>
                         {questions}

@@ -73,6 +73,14 @@
     display: none;
 }
 
+.loading {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20pt;
+    color: gray;
+    margin-top: 200px;
+}
+
 @media only screen and (max-width: 650px) {
     .content {
         padding-left: 5vw;
