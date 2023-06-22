@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import './HomeScreen.css';
 import Header from './components/Header'
 import Preview from "./components/Preview"
+import Feedback from "./components/Feedback";
 
 function HomeScreen() {
   const [data, setData] = useState(Object);
@@ -41,6 +42,7 @@ function HomeScreen() {
               <h1 style={{textAlign: 'center'}}>PREVIOUS QUIZZES</h1>
               <span className="grid">{quizzes.slice(1)}</span>
           </div>
+          <Feedback></Feedback>
       </div>
   );
 }

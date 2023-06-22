@@ -6,6 +6,7 @@ import Modal from 'react-modal';
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import Masthead from "./Masthead";
+import Feedback from "./Feedback";
 
 // Tells screen readers to ignore the background when a modal appears.
 Modal.setAppElement('#root');
@@ -148,6 +149,7 @@ function Quiz(this: any) {
                     <Results correct={correct} total={mark} visible={isSubmitted} name={title}></Results>
                 </div>
             </div>
+            <Feedback></Feedback>
         </>
     );
 }
