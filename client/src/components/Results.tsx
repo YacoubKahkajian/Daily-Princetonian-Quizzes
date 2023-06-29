@@ -36,6 +36,7 @@ function Results(props: {correct: number, total: boolean[], visible: boolean, na
             <div className="buttons">
                 <button onClick={shareSheet} className={(!navigator.canShare ? "hidden" : "")}>Share</button>
                 <button onClick={copyToClipboard}>{copyButtonText}</button>
+                <button onClick={function() {window.location.reload()}}>Retake</button>
             </div>
         </div>
     )
