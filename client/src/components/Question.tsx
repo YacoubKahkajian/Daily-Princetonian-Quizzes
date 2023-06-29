@@ -23,7 +23,6 @@ function Question(props: {question: string, options: string[], green : boolean, 
 
     const [color, setColor] = useState(String);
     useEffect(() => {
-        console.log("hi");
         if (props.green) setColor(" green");
         else if (props.disabled) setColor(" red");
     }, [props.disabled]);

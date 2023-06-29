@@ -22,14 +22,16 @@ function Quiz(this: any) {
     const [data, setData] = useState(Object);
     const [correct, setCorrect] = useState(Number);
     const [range, setRange] = useState(Object);
+    // Masthead metadata
     const [title, setTitle] = useState(String);
     const [subtitle, setSub] = useState(String);
     const [author, setAuthor] = useState(String);
     const [date, setDate] = useState(String);
-    const [isSubmitted, setSubmitted] = useState(false);
+    const [section, setSection] = useState(String);
     // Updates the individual questions to mark as correct, where true represents a
     // question that was correctly answered.
     let initialMark : boolean[] = new Array(data.length).fill(false);
+    const [isSubmitted, setSubmitted] = useState(false);
     const [mark, setMark] = useState(initialMark);
     // Required to use the react-modal library.
     const [modalIsOpen, setIsOpen] = useState(false);
@@ -51,6 +53,7 @@ function Quiz(this: any) {
                 setSub(data.subtitle);
                 setAuthor(data.author);
                 setDate(data.date);
+                setSection(data.section);
                 setLoaded(true);
             })
     }, []);
@@ -141,7 +144,7 @@ function Quiz(this: any) {
                 </Modal>
                 <p className={'loading' + (isLoaded ? " hidden" : "")}>Loading...</p>
                 <div id='root' className={(!isLoaded ? "hidden" : "")}>
-                    <Masthead title={title} subtitle={subtitle} author={author} date={date}></Masthead>
+                    <Masthead title={title} subtitle={subtitle} author={author} date={date} section={section}></Masthead>
                     <form className='form' onSubmit={handleSubmit}>
                         {questions}
                         <input type="submit" className={'finish-quiz' + (isSubmitted ? " hidden" : "")} value="Check answers"/>

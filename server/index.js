@@ -29,19 +29,24 @@ let questionList = [];
 
 function getQuizzes() {
     quizList = [];
+    let count = 0;
     for (let i = 0; i < rows.length; i++) {
-        let obj = {
-            name: rows[i].name,
-            subtitle: rows[i].subtitle,
-            date: rows[i].date,
-            author: rows[i].author,
-            firstRow: rows[i].firstRow,
-            lastRow: rows[i].lastRow,
-            imageURL: rows[i].imageURL,
-            route: rows[i].route
-        };
-        quizList.push(obj);
-        routeList[rows[i].route] = i;
+        if (rows[i].name) { // Ignore deleted quizzes.
+            let obj = {
+                name: rows[i].name,
+                subtitle: rows[i].subtitle,
+                date: rows[i].date,
+                author: rows[i].author,
+                section: rows[i].section,
+                firstRow: rows[i].firstRow,
+                lastRow: rows[i].lastRow,
+                route: rows[i].route,
+                imageURL: rows[i].imageURL
+            };
+            quizList.push(obj);
+            routeList[rows[i].route] = count;
+            count++;
+        }
     }
 }
 
@@ -87,6 +92,7 @@ app.post("/api/question-data", async (req, res) => {
         subtitle: quizList[i].subtitle,
         author: quizList[i].author,
         date: quizList[i].date,
+        section: quizList[i].section,
         questions: questionList,
         range: {
             first: quizList[i].firstRow - 1,

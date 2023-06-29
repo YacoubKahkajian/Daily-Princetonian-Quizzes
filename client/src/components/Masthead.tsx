@@ -1,6 +1,6 @@
 import './Masthead.css';
 
-function Masthead(props: {title: string, subtitle: string, author: string, date: string}) {
+function Masthead(props: {title: string, subtitle: string, author: string, date: string, section: string}) {
     function shareSheet() {
         const shareData = {
             title: `${props.title}`,
@@ -12,6 +12,7 @@ function Masthead(props: {title: string, subtitle: string, author: string, date:
 
     return (
         <div className='masthead'>
+            <div className='section-name'>{props.section}</div>
             <div className='quiz-title'>{props.title}</div>
             <div className='sub-title'>{props.subtitle}</div>
             <div className='metadata'>

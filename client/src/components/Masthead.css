@@ -25,12 +25,18 @@
     display: none;
 }
 
+.section-name {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 2.5vh;
+    margin-top: 120px;
+}
+
 .quiz-title {
     font-size: 9vh;
     font-weight: bold;
     display: block;
     width: 100%;
-    margin-top: 120px;
 }
 
 .sub-title {
@@ -39,6 +45,7 @@
 }
 
 @media only screen and (max-width: 650px) {
+
     .quiz-title {
         font-size: 5vh;
     }
@@ -47,11 +54,8 @@
         font-size: 3.5vh;
     }
 
-    .socials {
+    .socials, .credits, .section-name {
         font-size: 2vh;
     }
 
-    .credits {
-        font-size: 2vh;
-    }
 }
