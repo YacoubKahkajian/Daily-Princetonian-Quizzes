@@ -7,6 +7,7 @@ import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import Masthead from "./Masthead";
 import Feedback from "./Feedback";
+import AboutLink from "./AboutLink";
 
 // Tells screen readers to ignore the background when a modal appears.
 Modal.setAppElement('#root');
@@ -150,6 +151,7 @@ function Quiz(this: any) {
                         <input type="submit" className={'finish-quiz' + (isSubmitted ? " hidden" : "")} value="Check answers"/>
                     </form>
                     <Results correct={correct} total={mark} visible={isSubmitted} name={title}></Results>
+                    <AboutLink></AboutLink>
                 </div>
             </div>
             <Feedback></Feedback>

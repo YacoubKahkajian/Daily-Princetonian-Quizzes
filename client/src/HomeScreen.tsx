@@ -3,6 +3,7 @@ import './HomeScreen.css';
 import Header from './components/Header'
 import Preview from "./components/Preview"
 import Feedback from "./components/Feedback";
+import AboutLink from "./components/AboutLink";
 
 function HomeScreen() {
   const [data, setData] = useState(Object);
@@ -41,6 +42,7 @@ function HomeScreen() {
               </div>
               <h1 style={{textAlign: 'center'}}>PREVIOUS QUIZZES</h1>
               <span className="grid">{quizzes.slice(1)}</span>
+              <AboutLink></AboutLink>
           </div>
           <Feedback></Feedback>
       </div>
