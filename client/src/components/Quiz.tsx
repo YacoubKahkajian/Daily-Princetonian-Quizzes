@@ -5,6 +5,7 @@ import Results from './Results'
 import Modal from 'react-modal';
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
+import {Helmet} from "react-helmet";
 import Masthead from "./Masthead";
 import Feedback from "./Feedback";
 import AboutLink from "./AboutLink";
@@ -129,6 +130,10 @@ function Quiz(this: any) {
 
     return (
         <>
+            <Helmet>
+                <title>{title} - The 'Prince' Quizzes</title>
+                <meta name="description" content={subtitle}/>
+            </Helmet>
             <div className="content">
                 <Header/>
                 <Modal isOpen={modalIsOpen}

@@ -1,0 +1,24 @@
+{
+    "short_name": "Prince Quizzes",
+    "name": "The Daily Princetonian Quizzes",
+    "description": "Test your knowledge on recent events on campus with these fun news quizzes by The Daily Princetonian.",
+    "icons": [
+        {
+            "src": "/images/icons-512.png",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/images/icons-192.png",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "any maskable"
+        }
+    ],
+    "start_url": ".",
+    "id": "/",
+    "display": "standalone",
+    "theme_color": "#F15A24",
+    "background_color": "#ffffff"
+  }
