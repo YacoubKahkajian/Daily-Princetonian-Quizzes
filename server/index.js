@@ -86,20 +86,23 @@ app.post("/api/question-data", async (req, res) => {
     questions = await sheet2.getRows();
     const short = req.body.shortName;
     const i = routeList[short];
-    await getQuestions(quizList[i].firstRow - 1, quizList[i].lastRow - 1);
-    await res.json({
-        title: quizList[i].name,
-        subtitle: quizList[i].subtitle,
-        author: quizList[i].author,
-        date: quizList[i].date,
-        section: quizList[i].section,
-        questions: questionList,
-        range: {
-            first: quizList[i].firstRow - 1,
-            last: quizList[i].lastRow - 1
-        }
-    });
-    questionList = [];
+    if (i == null) await res.status(404);
+    else {
+        await getQuestions(quizList[i].firstRow - 1, quizList[i].lastRow - 1);
+        await res.json({
+            title: quizList[i].name,
+            subtitle: quizList[i].subtitle,
+            author: quizList[i].author,
+            date: quizList[i].date,
+            section: quizList[i].section,
+            questions: questionList,
+            range: {
+                first: quizList[i].firstRow - 1,
+                last: quizList[i].lastRow - 1
+            }
+        });
+        questionList = [];
+    }
 });
 
 // Processes quiz submissions.
